@@ -1,0 +1,49 @@
+﻿@model CalculatorApp.Models.CalculatorModel
+
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Simple Calculator</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="FirstNumber">First Number:</label>
+                            <input type="number" id="FirstNumber" name="FirstNumber" asp-for="FirstNumber" class="form-control" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="SecondNumber">Second Number:</label>
+                            <input type="number" id="SecondNumber" name="SecondNumber" asp-for="SecondNumber" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Operator">Operator:</label>
+                            <select id="Operator" name="Operator" asp-for="Operator" class="form-control" required>
+                                <option value="+">+</option>
+                                <option value="-">-</option>
+                                <option value="*">*</option>
+                                <option value="/">/</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Calculate</button>
+                        </div>
+                    </form>
+                    @if (Model.Result != 0 || Model.Operator == "/")
+                    {
+                        <div class="alert alert-info mt-4" role="alert">
+                            <h4 class="alert-heading">Result</h4>
+                            <p>@Model.FirstNumber @Model.Operator @Model.SecondNumber = @Model.Result</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
